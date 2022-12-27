@@ -246,6 +246,41 @@ class ApiController extends Controller
                 ]);
             }    
         }
+        public function getAllProductByChildCategoryId($id){
+            $Data=ProductDetails::where('categoryId',$id)->get();
+            if($Data){
+                return response()->json([
+                    'status'=>200,
+                    'payload'=>$Data,
+                    'message'=>'Product Details' 
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status'=>500,
+                    'payload'=>null,
+                    'message'=>'Access Denied' 
+                ]);
+            }    
+        }
+        public function getSignleProductById($id){
+            $Data=ProductDetails::where('id',$id)->get();
+            if($Data){
+                return response()->json([
+                    'status'=>200,
+                    'payload'=>$Data,
+                    'message'=>'Product Details' 
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status'=>500,
+                    'payload'=>null,
+                    'message'=>'Access Denied' 
+                ]);
+            }
+
+        }
 
 
 

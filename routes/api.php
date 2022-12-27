@@ -26,6 +26,9 @@ Route::get('getAllBrand',[ApiController::class,'getAllBrand']);
 Route::get('getAllPRoductByBrandId/{id}',[ApiController::class,'getAllPRoductByBrandId']);
 Route::get('getAllParentCategory',[ApiController::class,'getAllParentCategory']);
 Route::get('getAllProduct',[ApiController::class,'getAllProduct']);
+Route::get('getAllProductByChildCategoryId/{id}',[ApiController::class,'getAllProductByChildCategoryId']);
+Route::get('getSignleProductById/{id}',[ApiController::class,'getSignleProductById']);
+
 
 Route::group(["namespace"=>"Api"],function(){
     Route::post('login',[AuthController::class,'login']);
@@ -37,5 +40,4 @@ Route::group(["namespace"=>"Api"],function(){
     Route::put('updateUserById/{id}',[ApiController::class,'updateUserById']);
     Route::delete('getDeleteProductId/{id}',[ApiController::class,'getDeleteProductId']);
     });
-
 });
