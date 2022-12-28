@@ -23,7 +23,6 @@ class AuthController extends Controller
                 return response()->json($response,400);
             }
             $input=$request->all();
-           // $input['password']=bcrypt($input['password']);
             $input['password']=password_hash($input['password'],PASSWORD_BCRYPT);
             $data=User::create($input);
             $userId['userId']=$data->id;
@@ -63,7 +62,5 @@ class AuthController extends Controller
                 'message'=>'Failed To Login' 
              ]);
         }
-
-
     }
 }

@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,13 +25,13 @@ use App\Http\Controllers\AuthController;
 
 
 
-Route::get('getChildCategoryById/{id}',[ApiController::class,'getChildCategoryById']);
-Route::get('getAllBrand',[ApiController::class,'getAllBrand']);
-Route::get('getAllPRoductByBrandId/{id}',[ApiController::class,'getAllPRoductByBrandId']);
-Route::get('getAllParentCategory',[ApiController::class,'getAllParentCategory']);
-Route::get('getAllProduct',[ApiController::class,'getAllProduct']);
-Route::get('getAllProductByChildCategoryId/{id}',[ApiController::class,'getAllProductByChildCategoryId']);
-Route::get('getSignleProductById/{id}',[ApiController::class,'getSignleProductById']);
+Route::get('getChildCategoryById/{id}',[CategoryController::class,'getChildCategoryById']);
+Route::get('getAllBrand',[BrandController::class,'getAllBrand']);
+Route::get('getAllPRoductByBrandId/{id}',[BrandController::class,'getAllPRoductByBrandId']);
+Route::get('getAllParentCategory',[CategoryController::class,'getAllParentCategory']);
+Route::get('getAllProduct',[ProductController::class,'getAllProduct']);
+Route::get('getAllProductByChildCategoryId/{id}',[ProductController::class,'getAllProductByChildCategoryId']);
+Route::get('getSignleProductById/{id}',[ProductController::class,'getSignleProductById']);
 
 
 Route::group(["namespace"=>"Api"],function(){
@@ -35,9 +39,9 @@ Route::group(["namespace"=>"Api"],function(){
     Route::post('register',[AuthController::class,'register']);
     Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
-    Route::get('getAllUser',[ApiController::class,'getAllUser']);
-    Route::delete('deleteUserById/{id}',[ApiController::class,'deleteUserById']);
-    Route::put('updateUserById/{id}',[ApiController::class,'updateUserById']);
-    Route::delete('getDeleteProductId/{id}',[ApiController::class,'getDeleteProductId']);
+    Route::get('getAllUser',[UserController::class,'getAllUser']);
+    Route::delete('deleteUserById/{id}',[UserController::class,'deleteUserById']);
+    Route::put('updateUserById/{id}',[UserController::class,'updateUserById']);
+    Route::delete('getDeleteProductId/{id}',[ProductController::class,'getDeleteProductId']);
     });
 });

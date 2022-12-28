@@ -20,6 +20,8 @@ return new class extends Migration
             $table->bigInteger('categoryId')->unsigned();
             $table->string('productDescription');
             $table->string('product_img');
+            $table->float('product_price');
+            $table->integer('product_stock');
             $table->foreign('categoryId')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('brandId')->references('id')->on('brands')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
