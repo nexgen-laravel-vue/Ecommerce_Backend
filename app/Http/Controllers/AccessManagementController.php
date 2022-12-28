@@ -52,4 +52,15 @@ class AccessManagementController extends Controller
             return false;
         }
     }
+    public function is_LoggedIn(Request $req){
+        $user_id=$req->user()->id;
+        $user=User::find($user_id);
+        if($user){
+                return $user_id;
+        }
+        else{
+                return false;
+        }
+
+    }
 }

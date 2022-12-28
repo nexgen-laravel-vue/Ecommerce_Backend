@@ -8,6 +8,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,5 +44,6 @@ Route::group(["namespace"=>"Api"],function(){
     Route::delete('deleteUserById/{id}',[UserController::class,'deleteUserById']);
     Route::put('updateUserById/{id}',[UserController::class,'updateUserById']);
     Route::delete('getDeleteProductId/{id}',[ProductController::class,'getDeleteProductId']);
+    Route::post('addtoCart',[CartController::class,'addtoCart']);
     });
 });

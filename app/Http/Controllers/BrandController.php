@@ -5,8 +5,6 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\ProductDetails;
-use App\Models\User;
-use App\Models\userrolemapping;
 class BrandController extends Controller
 {
     public function getAllBrand(){
