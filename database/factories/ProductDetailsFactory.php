@@ -17,11 +17,13 @@ class ProductDetailsFactory extends Factory
     public function definition()
     {
         return [
-            //
-            'brandId'=>2,
-            'productName'=>"Lenovo ThinkBook-14",
-            'categoryId'=>6,
-            'productDescription'=>'abc'
+            'brandId'=>15,
+            'productName'=>"boat-wireless-5",
+            'categoryId'=>29,
+            'productDescription'=>'abc',
+            'product_img'=>'https://randomwordgenerator.com/img/picture-generator/54e9d1474250ac14f1dc8460962e33791c3ad6e04e5074417d2d73d2904ac4_640.jpg',
+            'product_price'=>230,
+            'product_stock'=>90
         ];
     }
 }

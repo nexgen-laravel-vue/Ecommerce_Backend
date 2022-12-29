@@ -25,7 +25,7 @@ use App\Http\Controllers\CartController;
 // });
 
 
-
+//All Public and non secure URL`s
 Route::get('getChildCategoryById/{id}',[CategoryController::class,'getChildCategoryById']);
 Route::get('getAllBrand',[BrandController::class,'getAllBrand']);
 Route::get('getAllPRoductByBrandId/{id}',[BrandController::class,'getAllPRoductByBrandId']);
@@ -45,5 +45,7 @@ Route::group(["namespace"=>"Api"],function(){
     Route::put('updateUserById/{id}',[UserController::class,'updateUserById']);
     Route::delete('getDeleteProductId/{id}',[ProductController::class,'getDeleteProductId']);
     Route::post('addtoCart',[CartController::class,'addtoCart']);
+    Route::delete('removeProduct/{id}',[CartController::class,'removeProduct']);
+    Route::put('updateQuantity/{id}',[CartController::class,'updateQuantity']);
     });
 });
