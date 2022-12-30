@@ -5,12 +5,18 @@ use App\Http\Controllers\AccessManagementController;
 use Illuminate\Http\Request;
 use App\Models\ProductDetails;
 use App\Models\CartProduct;
+use App\Models\User;
 class CartController extends Controller
 {
         public function addtoCart(Request $request){
             $is_LoggedIn=(new AccessManagementController)->is_LoggedIn($request);
             $user_Id=$is_LoggedIn;
             if($is_LoggedIn){
+              $userData=User::find($user_Id);
+              if($userData){
+                  $userData->isCustomer=1;
+                  $updateUserData=$userData->save();
+              }
               $Data=$request->all();
               $new_insert_array=array();
                 foreach($Data as $key=>$val)
