@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\http\Controllers\CustomerAddController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -47,5 +48,7 @@ Route::group(["namespace"=>"Api"],function(){
     Route::post('addtoCart',[CartController::class,'addtoCart']);
     Route::delete('removeProduct/{id}',[CartController::class,'removeProduct']);
     Route::put('updateQuantity/{id}',[CartController::class,'updateQuantity']);
+    Route::get('getAddressdetails/{id}',[CustomerAddController::class,'getAddressdetails']);
+    Route::post('add_Address',[CustomerAddController::class,'add_Address']);
     });
 });

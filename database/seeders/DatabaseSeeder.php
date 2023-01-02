@@ -9,6 +9,8 @@ use App\Models\Brand;
 use App\Models\ProductDetails;
 use App\Models\role;
 use App\Models\userrolemapping;
+use App\Models\AddressType;
+use App\Models\CustomerAdd;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -24,5 +26,7 @@ class DatabaseSeeder extends Seeder
             ProductDetails::factory()->create();
             role::factory()->create();
             userrolemapping::factory()->create();
+            AddressType::factory()->create();
+            CustomerAdd::factory()->create();
     }
 }

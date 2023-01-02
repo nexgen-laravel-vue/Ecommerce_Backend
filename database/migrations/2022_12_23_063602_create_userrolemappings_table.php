@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('userId')->unsigned();
             $table->bigInteger('roleId')->unsigned()->default(4);
             $table->primary(['userId','roleId']);
-            $table->foreign('userId')->references('id')->on('registrations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('roleId')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
