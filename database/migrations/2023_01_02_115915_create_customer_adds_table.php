@@ -24,9 +24,11 @@ return new class extends Migration
             $table->string('State');
             $table->String('PinOrZipCode');
             $table->string('Country');
-            $table->bigInteger('AddressTypeId')->unsigned();
+           // $table->bigInteger('AddressTypeId')->unsigned();
             $table->bigInteger('userId')->unsigned();
-            $table->foreign('AddressTypeId')->references('id')->on('address_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->tinyInteger('is_ShippingAddress')->default(0);
+            $table->tinyInteger('is_billingAddress')->default(0);
+           // $table->foreign('AddressTypeId')->references('id')->on('address_types')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

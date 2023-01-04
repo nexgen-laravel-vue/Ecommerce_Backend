@@ -19,7 +19,8 @@ class CustomerAdd extends Model
         'State',
         'PinOrZipCode',
         'Country',
-        'AddressTypeId',
-        'userId'
+        'userId',
+        'is_ShippingAddress',
+        'is_billingAddress'
     ];
 }

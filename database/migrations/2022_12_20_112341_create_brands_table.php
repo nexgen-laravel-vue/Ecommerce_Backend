@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('brandName');
             $table->bigInteger('categoryId')->unsigned();
+            $table->string('brandlogo');
             $table->foreign('categoryId')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });

@@ -92,4 +92,16 @@ class ProductController extends Controller
             ]);
         }    
     }
+    public function getUpdateProductById(Request $req,$id){
+        $isAdmin=(new AccessManagementController)->is_Admin($req);
+        $isSuperAdmin=(new AccessManagementController)->is_SuperAdmin($req);
+        if($isAdmin || $isSuperAdmin){
+            $Data=ProductDetails::find($id);
+            $Data->productName=$req->productName;
+            $Data->productDescription=$req->productDescription;
+            $Data->product_img=$req->product_img;
+            $Data=$input->save();
+        }        
+
+    }
 }

@@ -76,8 +76,6 @@ class UserController extends Controller
             $input=User::find($id);  
             $input->firstName=$req->firstName;
             $input->lastName=$req->lastName;
-            $input->email=$req->email;
-            $input->password=bcrypt($req->password);
             $input->phoneno=$req->phoneno;
             $Data=$input->save();
             if($Data){
