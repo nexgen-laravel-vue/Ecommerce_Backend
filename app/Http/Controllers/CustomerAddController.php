@@ -51,8 +51,9 @@ class CustomerAddController extends Controller
             if($is_LoggedIn){
                 $user_id=$is_LoggedIn;
                 $userData=User::find($user_id);
-                if($userData->isCustomer==1){
+                if($userData->isCustomer==1){  
                 $input=$request->all();
+                $input['userId']=$user_id;
                 $data=CustomerAdd::create($input);
                     if($data){
                         return response()->json([

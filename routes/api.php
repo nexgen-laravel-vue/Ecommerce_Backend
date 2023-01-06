@@ -45,6 +45,7 @@ Route::group(["namespace"=>"Api"],function(){
     Route::delete('deleteUserById/{id}',[UserController::class,'deleteUserById']);
     Route::put('updateUserById/{id}',[UserController::class,'updateUserById']);
     Route::delete('getDeleteProductId/{id}',[ProductController::class,'getDeleteProductId']);
+    Route::put('getUpdateProductById/{id}',[ProductController::class,'getUpdateProductById']);
     Route::post('addtoCart',[CartController::class,'addtoCart']);
     Route::delete('removeProduct/{id}',[CartController::class,'removeProduct']);
     Route::put('updateQuantity/{id}',[CartController::class,'updateQuantity']);

@@ -11,6 +11,7 @@ use App\Models\role;
 use App\Models\userrolemapping;
 use App\Models\AddressType;
 use App\Models\CustomerAdd;
+use App\Models\order;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -28,5 +29,6 @@ class DatabaseSeeder extends Seeder
             userrolemapping::factory()->create();
             AddressType::factory()->create();
             CustomerAdd::factory()->create();
+            order::factory()->create();
     }
 }

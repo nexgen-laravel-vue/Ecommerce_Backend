@@ -7,6 +7,7 @@ use App\Models\ProductDetails;
 use App\Models\CartProduct;
 use App\Models\User;
 use DB;
+use Illuminate\Support\Str;
 class CartController extends Controller
 {
         public function removeProduct(Request $request,$id){
@@ -107,9 +108,36 @@ class CartController extends Controller
                             $id=$user_Id;
                             $productId=$val['productId'];
                             $quantity=$val['quantity'];
-                            //$DataArray= array($productId,$quantity,$id,$old_quantity);
-                            $storedData= DB::select("CALL get_Update_Insert($productId,$quantity,$id)"); 
+                            $productData=ProductDetails::where('id',$productId)->first();
+                            $oldStock_qunatity=$productData->product_stock;
+                            if($quantity<$oldStock_qunatity){
+                                $selling_price=$val['selling_price'];
+                                $Actual_price=$val['Actual_price'];
+                                $promocode=$val['promocode'];
+                                $promocodeLength = Str::length($promocode);
+                                //return $promocodeLength;
+                                //return gettype($promocode);
+                                if($promocodeLength==0){
+                                    $promocode="null";
+                                }
+                                else{
+                                    $storedData= DB::select("CALL get_Update_Insert($productId,$quantity,$id,$selling_price,$Actual_price,'$promocode')"); 
+                                }
+                                // return $promocode;
+                            }
+                            else{
+                                return response()->json([
+                                    'status'=>500,
+                                    'payload'=>null,
+                                    'message'=>'quantity is higher than stock qunatity' 
+                                ]);
+                            }
                        }
+                       return response()->json([
+                        'status'=>200,
+                        'payload'=>"Success",
+                        'message'=>'Quantity Updated and inserted  successfully' 
+                    ]);
                 }
                 
         }

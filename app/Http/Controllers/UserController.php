@@ -8,13 +8,19 @@ use App\Models\Brand;
 use App\Models\ProductDetails;
 use App\Models\User;
 use App\Models\userrolemapping;
+use App\Models\role;
 class UserController extends Controller
 {
     public function getAllUser(Request $req){
         $isAdmin=(new AccessManagementController)->is_Admin($req);
         $isSuperAdmin=(new AccessManagementController)->is_SuperAdmin($req);
+        $is_LoggedIn=(new AccessManagementController)->is_LoggedIn($req);
+        $userId=$is_LoggedIn;
+        $roleId=1;
+        $superAdminData = userrolemapping::where('roleId', $roleId)->first();
+        $superAdminUserId=$superAdminData->userId;
         if($isAdmin || $isSuperAdmin){
-                $Data=User::all();
+                $Data=User::all()->where('id','!=',$superAdminUserId);
                     if($Data){
                         return response()->json([
                         'status'=>200,
@@ -41,24 +47,28 @@ class UserController extends Controller
     public  function deleteUserById(Request $req,$id){
         $isAdmin=(new AccessManagementController)->is_Admin($req);
         $isSuperAdmin=(new AccessManagementController)->is_SuperAdmin($req);
-        if($isAdmin || $isSuperAdmin){
-            $Data =User::find($id);
-            if($Data){
-                $Data->delete();
-                return response()->json([
-                    'status'=>200,
-                    'payload'=>$Data,
-                    'message'=>'Data Deleted successfully' 
-                ]);
-            }
-                else{
+        $is_LoggedIn=(new AccessManagementController)->is_LoggedIn($req);
+        $userId=$is_LoggedIn;
+        if($is_LoggedIn){
+            if($isAdmin || $isSuperAdmin){
+                $Data =User::find($id);
+                if($Data && $userId!=$id){
+                    $Data->delete();
                     return response()->json([
-                        'status'=>500,
-                        'payload'=>null,
-                        'message'=>'Failed to Delete The data' 
+                        'status'=>200,
+                        'payload'=>$Data,
+                        'message'=>'Data Deleted successfully' 
                     ]);
                 }
-            
+                    else{
+                        return response()->json([
+                            'status'=>500,
+                            'payload'=>null,
+                            'message'=>'Failed to Delete The data' 
+                        ]);
+                    }
+                
+            }
         }
         else{
           
