@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\http\Controllers\CustomerAddController;
+use App\http\Controllers\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -51,5 +52,6 @@ Route::group(["namespace"=>"Api"],function(){
     Route::put('updateQuantity/{id}',[CartController::class,'updateQuantity']);
     Route::get('getAddressdetails/{id}',[CustomerAddController::class,'getAddressdetails']);
     Route::post('add_Address',[CustomerAddController::class,'add_Address']);
+    Route::post('shopping',[PaymentController::class,'shopping']);
     });
 });

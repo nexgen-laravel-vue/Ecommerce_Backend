@@ -9,4 +9,7 @@ class order extends Model
 {
     use HasFactory,Uuids;
     protected $table='orders';
+    protected $fillable = [
+        'userId'
+    ];
 }

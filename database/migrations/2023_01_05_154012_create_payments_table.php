@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->float('payment_amount');
             $table->string('payment_ref');
-            $table->uuid('orderId');
+            $table->uuid('orderId')->nullable()->default(null);
             $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

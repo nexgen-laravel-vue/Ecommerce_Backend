@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\AccessManagementController;
 use Illuminate\Http\Request;
 use App\Models\ProductDetails;
-use App\Models\CartProduct;
+use App\Models\cart_product;
 use App\Models\User;
 use DB;
 use Illuminate\Support\Str;
@@ -16,7 +16,7 @@ class CartController extends Controller
                 $user_id=$is_LoggedIn;
                 $userData=User::find($user_id);
                 if($userData->isCustomer==1){
-                    $Data=CartProduct::find($id);
+                    $Data=cart_product::find($id);
                     if($Data){
                         $Data->delete();
                         return response()->json([
@@ -57,7 +57,7 @@ class CartController extends Controller
                 $user_id=$is_LoggedIn;
                 $userData=User::find($user_id);
                 if($userData->isCustomer==1){
-                    $Data=CartProduct::find($id);
+                    $Data=cart_product::find($id);
                     $Data->quantity=$request->quantity;
                     $Data=$Data->save();
                     if($Data){
