@@ -100,8 +100,30 @@ class ProductController extends Controller
             $Data->productName=$req->productName;
             $Data->productDescription=$req->productDescription;
             $Data->product_img=$req->product_img;
-            $Data=$input->save();
-        }        
+            $Data=$Data->save();
+            if($Data){
+                return response()->json([
+                    'status'=>200,
+                    'payload'=>$Data,
+                    'message'=>'Product updated successfully' 
+                ]);
+
+            }
+            else{
+                return response()->json([
+                    'status'=>500,
+                    'payload'=>null,
+                    'message'=>'Failed to update The Product' 
+                ]);
+            }
+        } 
+        else{
+            return response()->json([
+                'status'=>404,
+                'payload'=>null,
+                'message'=>'Access Denied' 
+            ]);
+        }           
 
     }
 }

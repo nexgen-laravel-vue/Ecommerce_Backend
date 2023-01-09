@@ -83,7 +83,7 @@ class UserController extends Controller
         $isAdmin=(new AccessManagementController)->is_Admin($req);
         $isSuperAdmin=(new AccessManagementController)->is_SuperAdmin($req);
         if($isAdmin || $isSuperAdmin){
-            $input=User::find($id);  
+            $input=User::find($id);
             $input->firstName=$req->firstName;
             $input->lastName=$req->lastName;
             $input->phoneno=$req->phoneno;
