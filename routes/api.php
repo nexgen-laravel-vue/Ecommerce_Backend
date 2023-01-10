@@ -35,6 +35,8 @@ Route::get('getAllParentCategory',[CategoryController::class,'getAllParentCatego
 Route::get('getAllProduct',[ProductController::class,'getAllProduct']);
 Route::get('getAllProductByChildCategoryId/{id}',[ProductController::class,'getAllProductByChildCategoryId']);
 Route::get('getSignleProductById/{id}',[ProductController::class,'getSignleProductById']);
+Route::put('forgotPassword',[UserController::class,'forgotPassword']);
+
 
 
 Route::group(["namespace"=>"Api"],function(){

@@ -14,6 +14,7 @@ use DB;
 class PaymentController extends Controller
 {
     public function shopping(Request $request){
+        try{
         $is_LoggedIn=(new AccessManagementController)->is_LoggedIn($request);
         if($is_LoggedIn){
             $user_id=$is_LoggedIn;
@@ -75,5 +76,13 @@ class PaymentController extends Controller
             ]);
 
         }
+    }
+    catch(Exception $e){
+        return response()->json([
+            'status'=>500,
+            'payload'=>null,
+            'message'=>$e 
+        ]);
+    }
     }
 }

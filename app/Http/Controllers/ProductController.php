@@ -64,6 +64,7 @@ class ProductController extends Controller
 
     }
     public function getDeleteProductId(Request $req,$id){
+        try{
         $isAdmin=(new AccessManagementController)->is_Admin($req);
         $isSuperAdmin=(new AccessManagementController)->is_SuperAdmin($req);
         if($isAdmin || $isSuperAdmin){
@@ -90,7 +91,15 @@ class ProductController extends Controller
                 'payload'=>null,
                 'message'=>'Access Denied' 
             ]);
-        }    
+        }
+    }
+    catch(Exception $e){
+        return response()->json([
+            'status'=>500,
+            'payload'=>null,
+            'message'=>$e 
+        ]);
+    }
     }
     public function getUpdateProductById(Request $req,$id){
         $isAdmin=(new AccessManagementController)->is_Admin($req);

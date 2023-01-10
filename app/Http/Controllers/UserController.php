@@ -9,6 +9,8 @@ use App\Models\ProductDetails;
 use App\Models\User;
 use App\Models\userrolemapping;
 use App\Models\role;
+use Illuminate\Http\JsonResponse as Resp;
+use DB;
 class UserController extends Controller
 {
     public function getAllUser(Request $req){
@@ -110,5 +112,25 @@ class UserController extends Controller
                     'message'=>'Access Denied' 
                 ]);
             }
+    }
+    public function forgotPassword(Request $request){
+        $email=$request->email;
+        $password=$request->password;
+        $userData=DB::table('users')->where('email',$email)->get();
+       // $pass$userData[0]->password;
+        if(count($userData)>0){
+            $updatedPassword=password_hash($password,PASSWORD_BCRYPT);
+            DB::table('users')->where('email',$email)->update(['password' =>$updatedPassword]);
+            return "Success";
+
+           
+        }
+        else{
+            return response()->json([
+                'status'=>500,
+                'payload'=>null,
+                'message'=>'Enter Correct Email' 
+            ]);
+        }
     }
 }
