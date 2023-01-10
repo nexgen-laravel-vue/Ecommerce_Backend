@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\http\Controllers\CustomerAddController;
 use App\http\Controllers\PaymentController;
+use App\http\Controllers\sendMailController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,7 +37,7 @@ Route::get('getAllProduct',[ProductController::class,'getAllProduct']);
 Route::get('getAllProductByChildCategoryId/{id}',[ProductController::class,'getAllProductByChildCategoryId']);
 Route::get('getSignleProductById/{id}',[ProductController::class,'getSignleProductById']);
 Route::put('forgotPassword',[UserController::class,'forgotPassword']);
-
+Route::post('sendmail',[sendMailController::class,'sendmail']);
 
 
 Route::group(["namespace"=>"Api"],function(){
@@ -47,8 +48,8 @@ Route::group(["namespace"=>"Api"],function(){
     Route::get('getAllUser',[UserController::class,'getAllUser']);
     Route::delete('deleteUserById/{id}',[UserController::class,'deleteUserById']);
     Route::put('updateUserById/{id}',[UserController::class,'updateUserById']);
-    Route::delete('getDeleteProductId/{id}',[ProductController::class,'getDeleteProductId']);
-    Route::put('getUpdateProductById/{id}',[ProductController::class,'getUpdateProductById']);
+    Route::delete('deleteProductById/{id}',[ProductController::class,'deleteProductById']);
+    Route::put('updateProductById/{id}',[ProductController::class,'updateProductById']);
     Route::post('addtoCart',[CartController::class,'addtoCart']);
     Route::delete('removeProduct/{id}',[CartController::class,'removeProduct']);
     Route::put('updateQuantity/{id}',[CartController::class,'updateQuantity']);

@@ -117,7 +117,6 @@ class UserController extends Controller
         $email=$request->email;
         $password=$request->password;
         $userData=DB::table('users')->where('email',$email)->get();
-       // $pass$userData[0]->password;
         if(count($userData)>0){
             $updatedPassword=password_hash($password,PASSWORD_BCRYPT);
             DB::table('users')->where('email',$email)->update(['password' =>$updatedPassword]);

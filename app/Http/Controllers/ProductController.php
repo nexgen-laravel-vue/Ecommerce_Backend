@@ -63,7 +63,7 @@ class ProductController extends Controller
         }
 
     }
-    public function getDeleteProductId(Request $req,$id){
+    public function deleteProductById(Request $req,$id){
         try{
         $isAdmin=(new AccessManagementController)->is_Admin($req);
         $isSuperAdmin=(new AccessManagementController)->is_SuperAdmin($req);
@@ -101,7 +101,7 @@ class ProductController extends Controller
         ]);
     }
     }
-    public function getUpdateProductById(Request $req,$id){
+    public function updateProductById(Request $req,$id){
         $isAdmin=(new AccessManagementController)->is_Admin($req);
         $isSuperAdmin=(new AccessManagementController)->is_SuperAdmin($req);
         if($isAdmin || $isSuperAdmin){
