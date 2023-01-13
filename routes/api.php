@@ -12,6 +12,7 @@ use App\Http\Controllers\CartController;
 use App\http\Controllers\CustomerAddController;
 use App\http\Controllers\PaymentController;
 use App\http\Controllers\sendMailController;
+use App\http\Controllers\customerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,6 +39,9 @@ Route::get('getAllProductByChildCategoryId/{id}',[ProductController::class,'getA
 Route::get('getSignleProductById/{id}',[ProductController::class,'getSignleProductById']);
 Route::put('forgotPassword',[UserController::class,'forgotPassword']);
 Route::post('sendmail',[sendMailController::class,'sendmail']);
+
+Route::get('test',[customerController::class,'demoDependencyInjection']);
+Route::get('test2',[customerController::class,'democonstructorDI']);
 
 
 Route::group(["namespace"=>"Api"],function(){

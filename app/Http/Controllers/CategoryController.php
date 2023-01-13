@@ -7,27 +7,45 @@ use App\Models\Brand;
 use App\Models\ProductDetails;
 use App\Models\User;
 use App\Models\userrolemapping;
+use App\Models\ResponseModel\ErrorResponseModel;
+use App\Models\ResponseModel\ExceptionResponseModel;
+use App\Models\ResponseModel\AccessDeniedResponseModel;
+use App\Models\ResponseModel\SuccessResponseModel;
+use DB;
 class CategoryController extends Controller
 {
     public function getAllParentCategory(){
-        $Data=Category::where("parentId",null)->get();
-            if($Data){
-                return response()->json([
-                    'status'=>200,
-                    'payload'=>$Data,
-                    'message'=>'Data extracted successfully' 
-                    ]);
+        try{
+            $Data=DB::table('categories')->where("parentId",null)->get();
+                if($Data){
+                    return $response=(new SuccessResponseModel)->successResponseWithPaylod($Data);
+                }    
+                else{
+                    return $response=(new ErrorResponseModel)->noDataFoundResponse(); 
                 }
-            else{
-                return response()->json([
-                    'status'=>500,
-                    'payload'=>null,
-                    'message'=>'Failed' 
-                    ]);
-            }
+        }
+        catch(\Exception $e){
+            return $response=(new ExceptionResponseModel)->getExceptionResponse($e);
+        }
+        catch(\Error $e){
+            return $response=(new ErrorResponseModel)->getErrorResponse($e);
+        }
         }
     public function getChildCategoryById($id){
-        $Data=Category::where('parentId',$id)->get();
-        return $Data;
+        try{
+            $Data=DB::table('categories')->where('parentId',$id)->get();
+            if($Data){
+                return $response=(new SuccessResponseModel)->successResponseWithPaylod($Data);
+            }
+            else{
+                return $response=(new ErrorResponseModel)->noDataFoundResponse(); 
+            }
+        }
+        catch(\Exception $e){
+            return $response=(new ExceptionResponseModel)->getExceptionResponse($e);
+        }
+        catch(\Error $e){
+            return $response=(new ErrorResponseModel)->getErrorResponse($e);
+        } 
     }
 }
