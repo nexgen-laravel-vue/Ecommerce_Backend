@@ -27,7 +27,8 @@ class sendMailController extends Controller
                 $userData=DB::table('users')->where('email',$email)->get();
                 if(count($userData)>0){
                     $name=$userData[0]->firstName;
-                    Mail::to($email)->send(new TestEmail($name));
+                    $id=$userData[0]->id;
+                    Mail::to($email)->send(new TestEmail($name,$id));
                     return $response=(new  SuccessResponseModel)->successResponseWithoutPaylod();
                 }
                 else{
@@ -41,5 +42,17 @@ class sendMailController extends Controller
             return $response=(new ErrorResponseModel)->getErrorResponse($e);
         }
         
+    }
+    public function varificationMail(Request $request){
+        try{
+            
+        }
+        catch(\Exception $e){
+            return $response=(new ExceptionResponseModel)->getExceptionResponse($e);
+        }
+        catch(\Error $e){
+            return $response=(new ErrorResponseModel)->getErrorResponse($e);
+        }
+
     }
 }

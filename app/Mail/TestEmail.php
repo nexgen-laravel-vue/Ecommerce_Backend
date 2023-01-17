@@ -12,15 +12,16 @@ use Illuminate\Queue\SerializesModels;
 class TestEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $name;
+    public $name,$id;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($name,$id)
     {
         $this->name=$name;
+        $this->id=$id;
     }
 
     /**
@@ -31,7 +32,7 @@ class TestEmail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Reset Password link generated',
+            subject: 'Reset Password',
         );
     }
 

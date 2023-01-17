@@ -7,14 +7,15 @@ use App\Models\Brand;
 use App\Models\ProductDetails;
 use App\Models\User;
 use App\Models\userrolemapping;
+use DB;
 class AccessManagementController extends Controller
 {
     public function is_ValidToken(Request $req){
         $user_id=$req->user()->id;
-        $user=User::find($user_id);
+        $user=DB::table('users')->where('id',$user_id)->get();
         if($user){
                 $userid=$user->id;
-                $RoleData=userrolemapping::where('userId',$userid)->orderBy('userId')->first();
+                $RoleData=DB::table('userrolemappings')->where('userId',$userid)->orderBy('userId')->first();
                 $roleId=$RoleData->roleId;
                 return $roleId;
         }
@@ -54,7 +55,7 @@ class AccessManagementController extends Controller
     }
     public function is_LoggedIn(Request $req){
         $user_id=$req->user()->id;
-        $user=User::find($user_id);
+        $user=DB::table('users')->where('id',$user_id)->get();
         if($user){
                 return $user_id;
         }

@@ -43,7 +43,8 @@ class AuthController extends Controller
     }
     public function login(Request $request){
         try{
-            $user=DB::table('users')->where('email', $request->email)->first();
+            $user=User::where('email', $request->email)->first();
+          //  $user=DB::table('users')->where('email', $request->email)->first();
             $pass_check=password_verify($request->password, $user->password);
             if ($user && $pass_check) {
                   $userid=$user->id;
@@ -52,6 +53,7 @@ class AuthController extends Controller
                   $roleData=DB::table('roles')->where('id',$roleid)->first();
                   $roleType=$roleData->roleType;
                   $success['token']=$user->createToken('MyApp')->plainTextToken;
+                // $success['token']=$user->createToken('token')->accessToken;
                   $success['firstName']=$user->firstName;
                   $success['lastName']=$user->lastName;
                   $success['phoneno']=$user->phoneno;

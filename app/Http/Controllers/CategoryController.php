@@ -48,4 +48,22 @@ class CategoryController extends Controller
             return $response=(new ErrorResponseModel)->getErrorResponse($e);
         } 
     }
+    public function getAllParentCategoryName(){
+        try{
+            $Data=DB::table('categories')->select('categoryName','id')->where("parentId",null)->get();
+            return $Data;
+                if($Data){
+                    return $response=(new SuccessResponseModel)->successResponseWithPaylod($Data);
+                }    
+                else{
+                    return $response=(new ErrorResponseModel)->noDataFoundResponse(); 
+                }
+        }
+        catch(\Exception $e){
+            return $response=(new ExceptionResponseModel)->getExceptionResponse($e);
+        }
+        catch(\Error $e){
+            return $response=(new ErrorResponseModel)->getErrorResponse($e);
+        }
+        }
 }

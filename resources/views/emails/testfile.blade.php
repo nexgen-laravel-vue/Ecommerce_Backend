@@ -1,12 +1,10 @@
 <x-mail::message>
 # Welcome to first generated mail
-Dear {{$name }},
+Dear {{$name}},
 The demo  body of your message.
-
-<x-mail::button :url="'http://127.0.0.1:5176/reset-password?id=12'">
+<x-mail::button :url={{config('APP_URL')}}.{{config('APP_RESETPASSWORDLINK')}}>
 Button Text
 </x-mail::button>
-
 Thanks,<br>
 {{ config('app.name') }}
 </x-mail::message>

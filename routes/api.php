@@ -39,7 +39,7 @@ Route::get('getAllProductByChildCategoryId/{id}',[ProductController::class,'getA
 Route::get('getSignleProductById/{id}',[ProductController::class,'getSignleProductById']);
 Route::put('forgotPassword',[UserController::class,'forgotPassword']);
 Route::post('sendmail',[sendMailController::class,'sendmail']);
-
+Route::get('getAllParentCategoryName',[CategoryController::class,'getAllParentCategoryName']);
 Route::get('test',[customerController::class,'demoDependencyInjection']);
 Route::get('test2',[customerController::class,'democonstructorDI']);
 
