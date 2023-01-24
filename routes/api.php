@@ -13,6 +13,7 @@ use App\http\Controllers\CustomerAddController;
 use App\http\Controllers\PaymentController;
 use App\http\Controllers\sendMailController;
 use App\http\Controllers\customerController;
+use App\http\Controllers\AccessManagementController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -50,6 +51,7 @@ Route::group(["namespace"=>"Api"],function(){
     Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
     Route::get('getAllUser',[UserController::class,'getAllUser']);
+    Route::get('isvalidToken',[AccessManagementController::class,'is_ValidToken']);
     Route::delete('deleteUserById/{id}',[UserController::class,'deleteUserById']);
     Route::put('updateUserById/{id}',[UserController::class,'updateUserById']);
     Route::delete('deleteProductById/{id}',[ProductController::class,'deleteProductById']);

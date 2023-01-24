@@ -14,7 +14,7 @@ class AccessManagementController extends Controller
         $user_id=$req->user()->id;
         $user=DB::table('users')->where('id',$user_id)->get();
         if($user){
-                $userid=$user->id;
+                $userid=$user[0]->id;
                 $RoleData=DB::table('userrolemappings')->where('userId',$userid)->orderBy('userId')->first();
                 $roleId=$RoleData->roleId;
                 return $roleId;
@@ -25,6 +25,7 @@ class AccessManagementController extends Controller
     }
     public function is_Admin(Request $req){
         $data=$this->is_ValidToken($req);
+        return $data;
         if($data){
             $roleId=$data;
             if($roleId==2){
